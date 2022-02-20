@@ -1,0 +1,14 @@
+<!--  parent > child  -->
+<p>item-parent works!</p>
+<input type="text" name="itemParent" id="itemParent" (keyup)="itemParentTitle = $event.target.value">
+<app-item-child [itemTitleInChild]="itemParentTitle" #myChild (eventEmiterChild)="dataFromChild = $event">
+    <h4>title from parent to use ng-content in child</h4>
+    <h4 class="h4Class">h4Class</h4>
+    <h4 class="h4Id">h4Id</h4>
+    <h2>parent color test</h2>
+</app-item-child> <!-- child > parent -->
+
+Data from child is <p>{{dataFromChild}}</p>
+<!-- parent > child --------------- input -->
+<!-- child > parent  --------------- output -->
+<!-- viewCild  --------------- to view somthing in same component or anouther component -->

@@ -1,0 +1,12 @@
+<!-- parent > child  -->
+<p>item-child works! item title is {{itemTitleInChild}}</p>
+<br>
+---------------------------------------------------------------
+<br>
+<!-- child > parent -->
+<button (click)="pushEventEmit()">push Event Emit</button>
+
+<ng-content slect="h4"></ng-content>
+<ng-content slect=".h4Class"></ng-content>
+<ng-content slect="#h4Id"></ng-content>
+<h2>child color test</h2> <!-- encapsulation: ViewEncapsulation.None in parent-->

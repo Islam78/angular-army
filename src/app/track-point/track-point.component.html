@@ -1,0 +1,18 @@
+<!-- لما بدوس عليها بيعمل ريفرش لل ul كلها بيمسحها ويضيفها تاني -->
+<button (click)="refresh()" type="button">refresh</button>
+<ul>
+  without track
+  <li *ngFor="let student of students; let i = index;">
+    <!-- بيمسح كلو ويضيفه تاني -->
+
+    {{student.id }} - {{student. name}}
+  </li>
+  <br>
+  with track
+  <li *ngFor="let student of students; let i = index; trackBy:track">
+    <!-- مش بيمسح حاجة وبيضيف اخر حاجة بس -->
+    <!-- trackBy:track بقوله انت معاك اخر id ف متحذفش لحد عندو وضيف الجديد بس -->
+
+    {{student.id }} - {{student. name}}
+  </li>
+</ul>

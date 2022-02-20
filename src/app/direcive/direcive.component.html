@@ -1,0 +1,27 @@
+<p>direcive works!</p>
+<h1 appDirective>directive tester</h1>
+<hr>
+<!-- new example -->
+
+<input appDirective type="text">
+
+<!-- new ex -->
+<ng-container #ForLoop
+    *ngFor="let item of colorArray; let i = index; let odd= odd; let even = even; let first = first; let last=last; let count = count ;trackBy:trackByFun ">
+    <div>
+        {{item}}
+        <br>-i {{i}}
+        <br>-odd {{odd}}
+        <br>-even {{even}}
+        <br>-first {{first}}
+        <br>-last {{last}}
+        <br>-count {{count}}
+        <hr>
+    </div>
+</ng-container>
+<ng-template #myNames><p> my names</p></ng-template>
+
+<!-- لو عاوز اكرر الكونتينر دا ف مكان تاني بدل ماعمله كوبي بيست -->
+<ng-container *ngTemplateOutlet="myNames"></ng-container> 
+<ng-container *ngTemplateOutlet="myNames"></ng-container> 
+<ng-container *ngTemplateOutlet="myNames"></ng-container> 

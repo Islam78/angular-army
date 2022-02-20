@@ -1,0 +1,12 @@
+<p>custom-pipe works!</p>
+
+<img [src]="imageUrl | defaultImage : DefaultImageUrl" alt="">
+
+<!-- ***************** important new example  -->
+
+<ng-container *ngFor="let item of fakeData">
+    <p>{{item.name}} -age: {{item.age}} -speed: {{item.speed}}</p>
+</ng-container>
+
+<h5>total count of age: {{fakeData | sun : 'age'}}</h5>
+<h5>total count of speed: {{fakeData | sun : 'speed'}}</h5>

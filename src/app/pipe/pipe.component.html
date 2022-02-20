@@ -1,0 +1,11 @@
+<p>pipe works!</p>
+
+
+<!-- ex for rating -->
+<ng-container *ngFor="let item of [1,2,3,4,5] |slice : 0 : rating">
+    <img src="https://cdnjs.cloudflare.com/ajax/libs/raty/2.8.0/images/star-on.png" alt="" srcset="">
+</ng-container>
+<ng-container *ngFor="let item of [1,2,3,4,5] |slice : -rating+1">
+    
+    <img width="15" height="15" src="https://pic.onlinewebfonts.com/svg/img_264498.png" alt="" srcset="">
+</ng-container>

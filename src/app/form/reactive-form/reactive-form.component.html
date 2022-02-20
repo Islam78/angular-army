@@ -1,0 +1,131 @@
+<form [formGroup]="profileForm" (submit)="onSubmit()">
+    <br> <br> <label> first name:
+        <input type="text" formControlName="firstName">
+        <span *ngIf="profileForm.controls.firstName.invalid && profileForm.controls.firstName.touched">require</span>
+    </label>
+
+    <br> <br> <label> last name: <input type="text" formControlName="lastName"></label>
+    <ng-container formGroupName="adrees">
+        <br> <br> <label> city name: <input type="text" formControlName="city"></label>
+        <br> <br> <label> street name: <input type="text" formControlName="street"></label>
+    </ng-container>
+    <br> <br> <label> custom validator:
+        <input type="text" formControlName="customValidator">
+        <span
+            *ngIf="profileForm.controls.customValidator.invalid && profileForm.controls.customValidator.touched">require</span>
+    </label>
+    <br> <br>
+    <button>submit</button>
+    <button type="button" (click)="updateValue()">update data</button>
+    <hr>
+    <span>profile form status: {{profileForm.status}}</span>
+</form>
+
+
+
+<!-- form example  -->
+<div class='container'>
+    <div class='window'>
+        <div class='overlay'></div>
+        <div class='content'>
+            <div class='welcome'>Login Form!</div>
+            <form [formGroup]="loginForm" (submit)="onSubmitLoginForm()">
+                <div class='input-fields'>
+                    <ng-container *ngIf="loginForm.controls.UserName.dirty">
+                        <label for="UserName" class="text-danger"
+                            *ngIf="loginForm.controls.UserName.errors?.required">*Name Is Required</label>
+                        <label for="UserName" class="text-danger"
+                            *ngIf="loginForm.controls.UserName.errors?.userNameExist">*User Name Exist</label>
+                    </ng-container>
+                    <input type='text' name="UserName" formControlName="UserName" #UserName placeholder='Username'
+                        class='input-line full-width'>
+
+                    <input type='email' formControlName="Email" placeholder='Email' class='input-line full-width'>
+                    <input type='password' formControlName="Password" placeholder='Password'
+                        class='input-line full-width'>
+                </div>
+                <div>
+                    <button class='ghost-round full-width'>Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- **************classRoom static form -->
+<div class="form-container">
+    <form [formGroup]="schoolForm">
+        <h4>Dynamic Form</h4>
+        <div class="form-body">
+            <div class="form-control">
+                School Name *
+                <input type="text" placeholder="School Name" formControlName="schoolName" />
+            </div>
+            <div class="form-control">
+                Total Students Count *
+                <input type="text" placeholder="Total Students Count" formControlName="totalStudentsCount" />
+            </div>
+            <!-- Start Classes Container -->
+            <div class="class-rooms" formArrayName="classRooms" *ngIf="getClassRooms().controls.length">
+                <ng-container *ngFor="
+              let classRoom of getClassRooms().controls;
+              let classRoomIndex = index
+            ">
+                    <!-- Start Class Room -->
+                    <div class="class-rooms__room" [formGroupName]="classRoomIndex">
+                        <div class="form-control">
+                            Students Count
+                            <input type="text" placeholder="Total Students Count" formControlName="studentsCount" />
+                        </div>
+                        <div class="form-control">
+                            Class Room Number
+                            <input type="text" placeholder="Class Room Number" formControlName="classRoomNumber" />
+                        </div>
+                        <!-- Start Subjects -->
+                        <div class="class-rooms__room--subjects" formArrayName="subjects">
+                            <ng-container *ngFor="
+                    let subject of getClassRoomSubjects(classRoomIndex).controls;
+                    let subjectIndex = index
+                  ">
+                                <!-- Start Subject -->
+                                <div class="subject" [formGroupName]="subjectIndex">
+                                    <div class="form-control">
+                                        Subject Name
+                                        <input type="text" placeholder="Subject Name" formControlName="subjectName" />
+                                    </div>
+                                    <div class="form-control">
+                                        Students Count
+                                        <input type="text" placeholder="Total Students Count"
+                                            formControlName="studentsCount" />
+                                    </div>
+                                    <button type="button" class="delete-btn" (click)="
+                        deleteClassRoomSubjects(classRoomIndex, subjectIndex)
+                      ">
+                                        Delete Subject
+                                    </button>
+                                </div>
+                                <!-- End Subject -->
+                            </ng-container>
+                        </div>
+                        <!-- End Subjects -->
+                        <button type="button" class="add-btn" (click)="addClassRoomSubjects(classRoomIndex)">
+                            Add Subject
+                        </button>
+                        <button type="button" class="delete-btn" (click)="deleteClassRoom(classRoomIndex)">
+                            Delete Class Room
+                        </button>
+                    </div>
+                    <!-- End Class Room -->
+                </ng-container>
+            </div>
+            <!-- End Classes Container -->
+            <button class="add-btn" type="button" (click)="addClassRoom()">
+                Add Class Room
+            </button>
+            <hr />
+            {{ schoolForm.value | json }}
+        </div>
+    </form>
+</div>

@@ -1,0 +1,11 @@
+<app-item-child></app-item-child> <!-- if i commented it thew @viewChild will not work-->
+
+<p>view-child works!</p>
+
+<!--************** في معلومه عظيمه هناااااا **************************** -->
+<!-- ng-container بستخدمها لو عاوز div وهمي عشان استخدمه ف حاجة معينه وبس  -->
+<!-- يعني مثلا لو عاوز اعمل for loop and if condition على نفس الحاجة  -->
+<ng-container *ngFor="let item of ['one','two','three']; let i = index">
+    <p>{{i+1}}-{{item}}</p>
+    <div *ngIf="!item"> empety loop!</div>
+</ng-container>

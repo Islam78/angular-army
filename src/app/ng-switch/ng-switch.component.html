@@ -1,0 +1,10 @@
+<p>ng-switch works!</p>
+<div *ngFor="let item of colors let i = index">
+  <input type="radio" id="color_{{i}}" [value]="item" [(ngModel)]="selectedColor">
+  <label for="color_{{i}}">{{item}}</label>
+</div>
+<div [ngSwitch]="selectedColor">
+  <p *ngSwitchCase="'red'"> you have choose red</p>
+  <p *ngSwitchCase="'green'"> you have choose green</p>
+  <p *ngSwitchDefault=""> you have choose nothing yet!</p>
+</div>
